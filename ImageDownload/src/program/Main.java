@@ -1,6 +1,7 @@
 package program;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -12,6 +13,7 @@ public class Main {
         Images mangas = new Images();
         HtmlPage htmlPage = new HtmlPage();
         Scanner sc = new Scanner(System.in);
+        String linkManga;
 
         System.out.print("Caminho Destino: ");  // /home/fidelis/Documentos/
         String path = sc.nextLine();
@@ -22,26 +24,33 @@ public class Main {
         System.out.print("Capitulo maximo: ");
         int chapterMax = sc.nextInt();
 
-        String link = htmlPage.request("https://www.brmangas.net/ler/" + nameManga + "-" + chapterMin + "-online/");
-        int index = link.indexOf("/uploads/");
-        String linkManga = link.substring(0, index);
-        System.out.println(linkManga);
-        File directory = new File(path + nameManga);
-        if(!directory.exists()) {
-            directory.mkdirs();
-            System.out.println("Diretório criado com sucesso!");
-        } else {
-            System.out.println("Diretorio existente.");
+        try {
+            String link = htmlPage.request("https://www.brmangas.net/ler/" + nameManga + "-" + chapterMin + "-online/");
+
+            int index = link.indexOf("/uploads/");
+            linkManga = link.substring(0, index);
+            System.out.println(linkManga);
+            File directory = new File(path + nameManga);
+            if (!directory.exists()) {
+                directory.mkdirs();
+                System.out.println("Diretório criado com sucesso!");
+            } else {
+                System.out.println("Diretorio existente.");
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("nome invalido");
+            return;
         }
 
-        for(int chapter = chapterMin; chapter <= chapterMax; chapter++) {
+        for (int chapter = chapterMin; chapter <= chapterMax; chapter++) {
             File cap = new File(path + nameManga + "/chapter" + chapter);
-            if(!cap.exists()) {
+            if (!cap.exists()) {
                 cap.mkdirs();
             }
             boolean chapterCompleted = false;
             int page = 0;
-            while(!chapterCompleted) {
+            while (!chapterCompleted) {
                 page++;
                 String imageUrl = linkManga + "/uploads/" + nameManga.charAt(0) + "/" + nameManga + "/" + chapter + "/" + page + ".jpg";
                 System.out.println(imageUrl);

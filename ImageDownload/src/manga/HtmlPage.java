@@ -1,5 +1,6 @@
 package manga;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import java.io.BufferedReader;
@@ -14,18 +15,22 @@ public class HtmlPage {
 
     public String request(String imageUrl) throws IOException {
         URL url = new URL(imageUrl);
-        URLConnection connection = url.openConnection();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-        String content;
-        StringBuilder html = new StringBuilder();
+        try {
+            URLConnection connection = url.openConnection();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String content;
+            StringBuilder html = new StringBuilder();
 
-        while((content = reader.readLine()) != null) {
-            html.append(content);
+            while ((content = reader.readLine()) != null) {
+                html.append(content);
+            }
+            reader.close();
+            System.out.println(html);
+            return regex(html);
+
+        } catch (FileNotFoundException e) {
+            throw e;
         }
-        reader.close();
-
-        System.out.println(html);
-        return regex(html);
     }
 
     public String regex(StringBuilder html) {
