@@ -15,7 +15,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         String linkManga;
 
-        System.out.print("Caminho Destino: ");  // /home/fidelis/Documentos/
+        System.out.print("Caminho Destino: ");  // exemplo: C:\Users\lucas.ferreira\Documents\Github\download-brmangas-image\
         String path = sc.nextLine();
         System.out.print("Nome do Mangá: ");
         String nameManga = sc.nextLine().replace(" ", "-").toLowerCase();

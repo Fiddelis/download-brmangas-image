@@ -25,7 +25,6 @@ public class HtmlPage {
                 html.append(content);
             }
             reader.close();
-            System.out.println(html);
             return regex(html);
 
         } catch (FileNotFoundException e) {
@@ -37,7 +36,6 @@ public class HtmlPage {
         Pattern p = Pattern.compile("(https:\\\\/\\\\/)+(\\S)+(.jpg)");
         Matcher m = p.matcher(html);
         if (m.find()) {
-            System.out.println(m.group().replace("\\", ""));
             return m.group().replace("\\", "");
         } else {
             return "not found";
