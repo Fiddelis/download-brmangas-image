@@ -1,4 +1,4 @@
-package manga;
+package fileutil;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -7,9 +7,10 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class Images {
+public class ImageDownload {
     public boolean downloadChapter(String imageUrl, String destinationFile, int chapter) throws IOException {
         InputStream inputStream;
+
         // Criando conexão com o link .jpg/png
         try {
             URL url = new URL(imageUrl);

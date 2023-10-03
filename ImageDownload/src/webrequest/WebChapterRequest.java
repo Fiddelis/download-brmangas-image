@@ -1,4 +1,4 @@
-package manga;
+package webrequest;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -11,9 +11,9 @@ import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class HtmlPage {
+public class HtmlRequest {
 
-    public String request(String imageUrl) throws IOException {
+    public String ChapterRequest(String imageUrl) throws IOException {
         URL url = new URL(imageUrl);
         try {
             URLConnection connection = url.openConnection();
@@ -32,7 +32,7 @@ public class HtmlPage {
         }
     }
 
-    public String regex(StringBuilder html) {
+    private String regex(StringBuilder html) {
         Pattern p = Pattern.compile("(https:\\\\/\\\\/)+(\\S)+(.jpg)");
         Matcher m = p.matcher(html);
         if (m.find()) {
