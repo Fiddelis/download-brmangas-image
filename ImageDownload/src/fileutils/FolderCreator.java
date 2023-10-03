@@ -2,15 +2,11 @@ package fileutils;
 
 import java.io.File;
 
-public class ChapterFolderCreator {
-    public void create(String path, String nameManga) {
-        File directory = new File(path + nameManga);
-
-        if (!directory.exists()) {
-            directory.mkdirs();
-            System.out.println("Diretório criado com sucesso!");
-        } else {
-            System.out.println("Diretorio existente.");
+public class FolderCreator {
+    public FolderCreator(String path, String name, int chapter) {
+        File folder = new File(path + name + "\\chapter" + chapter);
+        if (!folder.exists()) {
+            folder.mkdirs();
         }
     }
 }
