@@ -1,6 +1,6 @@
-package fileutils;
+package br.com.manga.fileutils;
 
-import webrequest.WebPageRequest;
+import br.com.manga.webrequest.WebPageRequest;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

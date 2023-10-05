@@ -1,4 +1,4 @@
-package webrequest;
+package br.com.manga.webrequest;
 
 import java.io.IOException;
 import java.io.InputStream;

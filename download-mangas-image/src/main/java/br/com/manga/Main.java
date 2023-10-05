@@ -1,13 +1,11 @@
-package main;
+package br.com.manga;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
-import fileutils.FolderCreator;
-import webrequest.WebChapterRequest;
-import fileutils.ImageDownload;
+import br.com.manga.fileutils.FolderCreator;
+import br.com.manga.webrequest.WebChapterRequest;
+import br.com.manga.fileutils.ImageDownload;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -47,7 +45,7 @@ public class Main {
             while (!chapterCompleted) {
                 page++;
                 String imageUrl = linkManga + "/uploads/" + nameManga.charAt(0) + "/" + nameManga + "/" + chapter + "/" + page + ".jpg";
-                String destinationFile = path + nameManga + "/chapter" + chapter + "\\" + page + ".jpg";
+                String destinationFile = path + nameManga + "/chapter" + chapter + "/" + page + ".jpg";
 
                 chapterCompleted = image.downloadPage(imageUrl, destinationFile, chapter);
             }
